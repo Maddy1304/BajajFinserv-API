@@ -8,9 +8,9 @@ app.use(express.json());
 
 
 const USER_INFO = {
-    user_id: "amar_madrewar_13112004", // Replace with your user_id in format: fullname_ddmmyyyy
-    email: "amar.madrewar2022@vitstudent.ac.in", // Replace with your email
-    roll_number: "22BCE0827" // Replace with your college roll number
+    user_id: "amar_madrewar_13112004", 
+    email: "amar.madrewar2022@vitstudent.ac.in", 
+    roll_number: "22BCE0827" 
 };
 
 
@@ -53,7 +53,7 @@ app.post('/bfhl', (req, res) => {
     try {
         const { data } = req.body;
         
-        // Validate input
+        
         if (!data || !Array.isArray(data)) {
             return res.status(400).json({
                 is_success: false,
@@ -73,7 +73,7 @@ app.post('/bfhl', (req, res) => {
             const str = String(item);
             
             if (isNumber(str)) {
-                // Handle numbers
+                
                 const num = parseInt(str);
                 sum += num;
                 
@@ -83,10 +83,10 @@ app.post('/bfhl', (req, res) => {
                     oddNumbers.push(str);
                 }
             } else if (isAlphabet(str)) {
-                // Handle alphabetic strings
+                
                 alphabets.push(str.toUpperCase());
             } else if (isSpecialCharacter(str)) {
-                // Handle special characters
+                
                 specialCharacters.push(str);
             }
         });
