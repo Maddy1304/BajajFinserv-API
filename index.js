@@ -8,35 +8,34 @@ app.use(express.json());
 
 
 const USER_INFO = {
-    full_name: "amar_madrewar", 
-    birth_date: "13112004",
-    email: "amar.madrewar2022@vitstudent.ac.in", 
-    roll_number: "22BCE0827" 
+    user_id: "amar_madrewar_13112004", // Replace with your user_id in format: fullname_ddmmyyyy
+    email: "amar.madrewar2022@vitstudent.ac.in", // Replace with your email
+    roll_number: "22BCE0827" // Replace with your college roll number
 };
 
-// Helper function to check if a string represents a valid number
+
 function isNumber(str) {
     return !isNaN(str) && !isNaN(parseFloat(str));
 }
 
-// Helper function to check if a string is entirely alphabetic
+
 function isAlphabet(str) {
     return /^[a-zA-Z]+$/.test(str);
 }
 
-// Helper function to check if a string is a special character
+
 function isSpecialCharacter(str) {
     return str.length === 1 && !isNumber(str) && !isAlphabet(str);
 }
 
-// Helper function to process concatenation string
+
 function createConcatString(alphabets) {
     if (alphabets.length === 0) return "";
     
-    // Join all alphabets and reverse
+    
     const allChars = alphabets.join('').split('').reverse();
     
-    // Apply alternating caps (starting with uppercase)
+    
     let result = "";
     for (let i = 0; i < allChars.length; i++) {
         if (i % 2 === 0) {
@@ -49,7 +48,7 @@ function createConcatString(alphabets) {
     return result;
 }
 
-// Main API endpoint
+
 app.post('/bfhl', (req, res) => {
     try {
         const { data } = req.body;
@@ -62,14 +61,14 @@ app.post('/bfhl', (req, res) => {
             });
         }
 
-        // Initialize arrays
+        
         const oddNumbers = [];
         const evenNumbers = [];
         const alphabets = [];
         const specialCharacters = [];
         let sum = 0;
 
-        // Process each element in the data array
+        
         data.forEach(item => {
             const str = String(item);
             
@@ -92,13 +91,12 @@ app.post('/bfhl', (req, res) => {
             }
         });
 
-        // Create concatenation string
         const concatString = createConcatString(alphabets);
 
-        // Create response
+        
         const response = {
             is_success: true,
-            user_id: `${USER_INFO.full_name}_${USER_INFO.birth_date}`,
+            user_id: USER_INFO.user_id,
             email: USER_INFO.email,
             roll_number: USER_INFO.roll_number,
             odd_numbers: oddNumbers,
@@ -120,14 +118,14 @@ app.post('/bfhl', (req, res) => {
     }
 });
 
-// GET endpoint for testing
+
 app.get('/bfhl', (req, res) => {
     res.status(200).json({
         operation_code: 1
     });
 });
 
-// Health check endpoint
+
 app.get('/', (req, res) => {
     res.json({
         message: "VIT Full Stack API is running!",

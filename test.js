@@ -39,13 +39,13 @@ function runTests() {
         console.log(`Test ${index + 1}: ${testCase.name}`);
         console.log(`Input: ${JSON.stringify(testCase.input)}`);
         
-        // Simulate the processing logic
+        
         const result = processData(testCase.input);
         console.log(`Output: ${JSON.stringify(result, null, 2)}\n`);
     });
 }
 
-// Simulate the main processing logic
+
 function processData(data) {
     const oddNumbers = [];
     const evenNumbers = [];
@@ -65,12 +65,12 @@ function processData(data) {
         return str.length === 1 && !isNumber(str) && !isAlphabet(str);
     }
 
-    // Process each element
+    
     data.forEach(item => {
         const str = String(item);
         
         if (isNumber(str)) {
-            // Handle numbers
+            
             const num = parseInt(str);
             sum += num;
             
@@ -120,7 +120,7 @@ function processData(data) {
     };
 }
 
-// Run tests if this file is executed directly
+
 if (require.main === module) {
     runTests();
 }
